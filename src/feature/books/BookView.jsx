@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 const BookView = () => {
   const books = useSelector((state) => state.booksReducer.books);
   return (
-    <div>
+    <div className="mt-10">
       <p className="text-center text-xl font-bold">
         Book Crud App Using Redux-toolkit
       </p>
@@ -17,7 +17,7 @@ const BookView = () => {
             </tr>
           </thead>
           <tbody>
-            {books.map((book) => (
+            {books && books.map((book) => (
               <tr key={book.id}>
                 <td className="border border-slate-600">{book.title}</td>
                 <td className="border border-slate-600">{book.author}</td>
