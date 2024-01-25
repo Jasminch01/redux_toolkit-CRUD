@@ -1,7 +1,14 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteBook } from "./bookSlice";
+import { Link } from "react-router-dom";
 
 const BookView = () => {
   const books = useSelector((state) => state.booksReducer.books);
+  console.log(books)
+  const dispatch = useDispatch();
+  const handleDelete = (title) => {
+    dispatch(deleteBook(title));
+  };
   return (
     <div className="mt-10">
       <p className="text-center text-xl font-bold">
@@ -17,16 +24,27 @@ const BookView = () => {
             </tr>
           </thead>
           <tbody>
-            {books && books.map((book) => (
-              <tr key={book.id}>
-                <td className="border border-slate-600">{book.title}</td>
-                <td className="border border-slate-600">{book.author}</td>
-                <td className="border border-slate-600 space-x-5">
-                    <button className="py-1 text-white px-2 my-2 bg-teal-500 rounded-lg">Edit</button>
-                    <button className="py-1 text-white px-2 my-2 bg-red-500 rounded-lg">delete</button>
-                </td>
-              </tr>
-            ))}
+            {books &&
+              books.map((book) => {
+                const {id, title, author} = book;
+               return <tr key={book.id}>
+                  <td className="border border-slate-600">{book.title}</td>
+                  <td className="border border-slate-600">{book.author}</td>
+                  <td className="border border-slate-600 space-x-5">
+                    <Link state={{id, title, author}} to={`/update`}>
+                      <button className="py-1 text-white px-2 my-2 bg-teal-500 rounded-lg">
+                        Edit
+                      </button>
+                    </Link>
+                    <button
+                      onClick={() => handleDelete(book.title)}
+                      className="py-1 text-white px-2 my-2 bg-red-500 rounded-lg"
+                    >
+                      delete
+                    </button>
+                  </td>
+                </tr>;
+              })}
           </tbody>
         </table>
       </div>

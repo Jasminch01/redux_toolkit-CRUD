@@ -3,6 +3,7 @@ import Home from "../Pages/Home";
 import Layout from "../Layout/Layout";
 import AddBooks from "../Pages/AddBooks";
 import ShowBooks from "../Pages/ShowBooks";
+import Update from "../components/Update";
 
 const Router = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ const Router = createBrowserRouter([
             {
                 path : '/show-books',
                 element : <ShowBooks/>
+            },
+            {
+                path : '/update',
+                element : <Update/>
             }
         ]
     }

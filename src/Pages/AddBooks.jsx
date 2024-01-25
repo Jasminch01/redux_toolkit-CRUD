@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addBook } from "../feature/books/bookSlice";
+import { v4 as uuidv4 } from 'uuid';
 
 const AddBooks = () => {
     const navigate = useNavigate()
@@ -10,6 +11,7 @@ const AddBooks = () => {
     const form = e.target;
 
     const book = {
+      id: uuidv4(),
       title: form.title.value,
       author: form.author.value,
     };
