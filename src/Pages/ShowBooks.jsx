@@ -1,9 +1,10 @@
+import BookView from "../feature/books/BookView";
 
 
 const ShowBooks = () => {
     return (
         <div>
-            <p>Show Books</p>
+            <BookView/>
         </div>
     );
 };
